@@ -18,6 +18,57 @@ endif
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+"NeoBundle Scripts-----------------------------
+if has('vim_starting')
+  set nocompatible               " Be iMproved
+ 
+  " Required:
+  set runtimepath^=~/.vim/bundle/neobundle.vim/
+endif
+
+
+" Required:
+call neobundle#begin(expand('~/.vim/bundle'))
+
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" Add or remove your Bundles here:
+" Helping opening files
+NeoBundle 'Shougo/unite.vim'
+" Displays recently opned files with unite.vim
+NeoBundle 'Shougo/neomru.vim'
+" Displays directories ans files by tree form 
+NeoBundle 'scrooloose/nerdtree'
+" Supports additional command for Rails
+NeoBundle 'tpope/vim-rails'
+" Completes end clause for Ruby codes
+NeoBundle 'tpope/vim-endwise'
+" Replaces single quotes and duoble quotes
+NeoBundle 'tpope/vim-surround'
+
+" NeoBundle 'Shougo/neosnippet.vim'
+" NeoBundle 'Shougo/neosnippet-snippets'
+" NeoBundle 'tpope/vim-fugitive'
+" NeoBundle 'ctrlpvim/ctrlp.vim'
+" NeoBundle 'flazz/vim-colorschemes'
+
+" You can specify revision/branch/tag.
+NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
+
+" Required:
+call neobundle#end()
+
+" Required:
+filetype plugin indent on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
+"End NeoBundle Scripts-------------------------
+
+
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
