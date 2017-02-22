@@ -1,0 +1,15 @@
+[user]
+  name = ytorii
+  email = metalwarrior_type_jp@hotmail.com
+[merge]
+  tool = vimdiff
+  keepBackup = false
+[alias]
+  tree = log --graph --date=short --pretty='format:%C(yellow)%h%Creset %s %Cgreen(%an)%Creset %Cred%d%Creset'
+  pull = pull --rebase
+  fetch = fetch --prune
+  fpush = push --force-with-lease
+  st = status
+  co = checkout
+  br = branch
+  pr = "!f() { git fetch -fu ${2:-$(git remote |grep ^upstream || echo origin)} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
