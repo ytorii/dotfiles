@@ -48,6 +48,11 @@ NeoBundle 'tpope/vim-endwise'
 " Replaces single quotes and duoble quotes
 NeoBundle 'tpope/vim-surround'
 
+" Markdown Previewer
+NeoBundle 'tpope/vim-markdown'
+NeoBundle 'tyru/open-browser.vim'
+NeoBundle 'thinca/vim-quickrun'
+
 " NeoBundle 'Shougo/neosnippet.vim'
 " NeoBundle 'Shougo/neosnippet-snippets'
 " NeoBundle 'tpope/vim-fugitive'
@@ -160,3 +165,9 @@ set expandtab
 set tabstop=2
 set shiftwidth=2
 set viminfo='20,\"1000
+" No backup files
+set nobackup
+
+" -------------------- QuickRun ----------------------------- "
+let g:quickrun_config = {}
+let g:quickrun_config['markdown'] = { 'outputter': 'browser' }
