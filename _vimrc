@@ -47,6 +47,8 @@ NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-endwise'
 " Replaces single quotes and duoble quotes
 NeoBundle 'tpope/vim-surround'
+" A fancy status line
+NeoBundle 'itchyny/lightline.vim'
 
 " Markdown Previewer
 NeoBundle 'tpope/vim-markdown'
@@ -167,7 +169,49 @@ set shiftwidth=2
 set viminfo='20,\"1000
 " No backup files
 set nobackup
+" Setting for lightline.vim
+let g:lightline = {
+      \ }
+let g:lightline = {
+  \  'colorscheme': 'seoul256',
+  \  'active': {
+  \    'left': [
+  \      ['mode', 'paste'],
+  \      ['readonly', 'filename', 'modified', 'ale'],
+  \    ]
+  \  },
+  \  'component_function': {
+  \    'ale': 'ALEGetStatusLine'
+  \  }
+  \ }
+
+set laststatus=2
 
 " -------------------- QuickRun ----------------------------- "
 let g:quickrun_config = {}
 let g:quickrun_config['markdown'] = { 'outputter': 'browser' }
+
+" ------------------------- ALE ----------------------------- "
+" Asynchronous Lint Engine (ALE)
+" Limit linters used for JavaScript.
+let g:ale_linters = {
+      \  'javascript': ['flow', 'eslint'],
+      \  'ruby': ['rubocop']
+      \  }
+let g:ale_fix_on_save = 1
+let g:ale_fixers = {
+  \   'javascript': ['eslint'],
+  \   'ruby': ['rubocop']
+  \  }
+highlight clear ALEErrorSign " otherwise uses error bg color (typically red)
+highlight clear ALEWarningSign " otherwise uses error bg color (typically red)
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_sign_error = 'X' " could use emoji
+let g:ale_sign_warning = '?' " could use emoji
+let g:ale_statusline_format = ['X %d', '? %d', '']
+" %linter% is the name of the linter that provided the message
+" %s is the error or warning message
+let g:ale_echo_msg_format = '%linter% says %s'
+" Map keys to navigate between lines with errors and warnings.
+nnoremap <leader>an :ALENextWrap<cr>
+nnoremap <leader>ap :ALEPreviousWrap<cr>
