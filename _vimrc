@@ -18,6 +18,9 @@ endif
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+" Use clipboard
+set clipboard=unnamed,autoselect
+
 "NeoBundle Scripts-----------------------------
 if has('vim_starting')
   set nocompatible               " Be iMproved
@@ -55,6 +58,7 @@ NeoBundle 'tpope/vim-markdown'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'thinca/vim-quickrun'
 
+NeoBundle 'w0rp/ale'
 " NeoBundle 'Shougo/neosnippet.vim'
 " NeoBundle 'Shougo/neosnippet-snippets'
 " NeoBundle 'tpope/vim-fugitive'
@@ -63,6 +67,13 @@ NeoBundle 'thinca/vim-quickrun'
 
 " You can specify revision/branch/tag.
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
+
+" The Silver Shearcher
+NeoBundle 'rking/ag.vim'
+
+" Syntax highlight for js
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'mxw/vim-jsx'
 
 " Required:
 call neobundle#end()
@@ -139,6 +150,9 @@ if has("autocmd")
     \   exe "normal! g`\"" |
     \ endif
 
+  " Change current working directory automatically
+  autocmd BufEnter * silent! lcd %:p:h
+
   augroup END
 
 else
@@ -201,7 +215,6 @@ let g:ale_linters = {
 let g:ale_fix_on_save = 1
 let g:ale_fixers = {
   \   'javascript': ['eslint'],
-  \   'ruby': ['rubocop']
   \  }
 highlight clear ALEErrorSign " otherwise uses error bg color (typically red)
 highlight clear ALEWarningSign " otherwise uses error bg color (typically red)
@@ -212,6 +225,10 @@ let g:ale_statusline_format = ['X %d', '? %d', '']
 " %linter% is the name of the linter that provided the message
 " %s is the error or warning message
 let g:ale_echo_msg_format = '%linter% says %s'
+
+" Enables syntax highlight for js file (not only jsx)
+let g:jsx_ext_required = 0
+
 " Map keys to navigate between lines with errors and warnings.
 nnoremap <leader>an :ALENextWrap<cr>
 nnoremap <leader>ap :ALEPreviousWrap<cr>
