@@ -71,9 +71,13 @@ NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
 " The Silver Shearcher
 NeoBundle 'rking/ag.vim'
 
+" HTML Tag Expander
+NeoBundle 'mattn/emmet-vim'
+
 " Syntax highlight for js
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'mxw/vim-jsx'
+NeoBundle 'rust-lang/rust.vim'
 
 " Required:
 call neobundle#end()
