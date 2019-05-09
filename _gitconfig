@@ -15,3 +15,5 @@
   pr = "!f() { git fetch -fu ${2:-$(git remote |grep ^upstream || echo origin)} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
 [push]
 	default = simple
+[core]
+	editor = vim -c \"set fenc=utf-8\"

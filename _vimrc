@@ -8,6 +8,7 @@
 "	      for Amiga:  s:.vimrc
 "  for MS-DOS and Win32:  $VIM\_vimrc
 "	    for OpenVMS:  sys$login:.vimrc
+set fileformats=unix,dos,mac
 
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
@@ -73,6 +74,67 @@ if dein#load_state('~/.cache/dein')
   call dein#end()
   call dein#save_state()
 endif
+
+" Required:
+call neobundle#begin(expand('~/.vim/bundle'))
+
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" Add or remove your Bundles here:
+" Helping opening files
+NeoBundle 'Shougo/unite.vim'
+" Displays recently opned files with unite.vim
+NeoBundle 'Shougo/neomru.vim'
+" Displays directories ans files by tree form 
+NeoBundle 'scrooloose/nerdtree'
+" Supports additional command for Rails
+NeoBundle 'tpope/vim-rails'
+" Completes end clause for Ruby codes
+NeoBundle 'tpope/vim-endwise'
+" Replaces single quotes and duoble quotes
+NeoBundle 'tpope/vim-surround'
+" A fancy status line
+NeoBundle 'itchyny/lightline.vim'
+
+" Markdown Previewer
+NeoBundle 'tpope/vim-markdown'
+NeoBundle 'tyru/open-browser.vim'
+NeoBundle 'thinca/vim-quickrun'
+
+NeoBundle 'w0rp/ale'
+" NeoBundle 'Shougo/neosnippet.vim'
+" NeoBundle 'Shougo/neosnippet-snippets'
+" NeoBundle 'tpope/vim-fugitive'
+" NeoBundle 'ctrlpvim/ctrlp.vim'
+" NeoBundle 'flazz/vim-colorschemes'
+
+" You can specify revision/branch/tag.
+NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
+
+" The Silver Shearcher
+NeoBundle 'rking/ag.vim'
+
+" HTML Tag Expander
+NeoBundle 'mattn/emmet-vim'
+
+" Syntax highlight for js
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'mxw/vim-jsx'
+NeoBundle 'rust-lang/rust.vim'
+
+" TypeScript syntax highlighting
+NeoBundle 'Quramy/tsuquyomi'
+NeoBundle 'leafgarland/typescript-vim'
+
+" PluntUML
+NeoBundle 'kazuph/previm', {'rev': 'feature/add-plantuml-plugin'}
+NeoBundle 'aklt/plantuml-syntax'
+let g:plantuml_executable_script = "~/dotfiles/plantuml"
+
+" Required:
+call neobundle#end()
 
 " Required:
 filetype plugin indent on
@@ -200,16 +262,14 @@ let g:quickrun_config['markdown'] = { 'outputter': 'browser' }
 " Asynchronous Lint Engine (ALE)
 " Limit linters used for JavaScript.
 let g:ale_linters = {
-      \  'javascript': ['flow', 'eslint'],
+      \  'javascript': ['eslint'],
       \  'ruby': ['rubocop']
       \  }
-let g:ale_fix_on_save = 1
 let g:ale_fixers = {
   \   'javascript': ['eslint'],
   \  }
 highlight clear ALEErrorSign " otherwise uses error bg color (typically red)
 highlight clear ALEWarningSign " otherwise uses error bg color (typically red)
-let g:ale_lint_on_text_changed = 'never'
 let g:ale_sign_error = 'X' " could use emoji
 let g:ale_sign_warning = '?' " could use emoji
 let g:ale_statusline_format = ['X %d', '? %d', '']
@@ -218,8 +278,13 @@ let g:ale_statusline_format = ['X %d', '? %d', '']
 let g:ale_echo_msg_format = '%linter% says %s'
 
 " Enables syntax highlight for js file (not only jsx)
-let g:jsx_ext_required = 0
+let g:jsx_ext_required = 1
 
 " Map keys to navigate between lines with errors and warnings.
 nnoremap <leader>an :ALENextWrap<cr>
 nnoremap <leader>ap :ALEPreviousWrap<cr>
+
+" disable safe write to enable HMR on percel 
+set backupcopy=yes
+
+au FileType plantuml command! OpenUml :!chromium-browser %
