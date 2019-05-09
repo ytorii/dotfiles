@@ -79,6 +79,9 @@ NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'mxw/vim-jsx'
 NeoBundle 'rust-lang/rust.vim'
 
+NeoBundle 'Quramy/tsuquyomi'
+NeoBundle 'leafgarland/typescript-vim'
+
 " Required:
 call neobundle#end()
 
