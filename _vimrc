@@ -20,79 +20,63 @@ set nocompatible
 
 " Use clipboard
 set clipboard=unnamed,autoselect
-
-"NeoBundle Scripts-----------------------------
-if has('vim_starting')
-  set nocompatible               " Be iMproved
- 
-  " Required:
-  set runtimepath^=~/.vim/bundle/neobundle.vim/
+if &compatible
+  set nocompatible
 endif
+" Add the dein installation directory into runtimepath
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
+if dein#load_state('~/.cache/dein')
+  call dein#begin('~/.cache/dein')
 
-" Required:
-call neobundle#begin(expand('~/.vim/bundle'))
+  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
+  " Add or remove your Bundles here:
+  " Helping opening files
+  call dein#add('Shougo/unite.vim')
+  " Displays recently opned files with unite.vim
+  call dein#add('Shougo/neomru.vim')
+  " Displays directories ans files by tree form 
+  call dein#add('scrooloose/nerdtree')
+  " Supports additional command for Rails
+  call dein#add('tpope/vim-rails')
+  " Completes end clause for Ruby codes
+  call dein#add('tpope/vim-endwise')
+  " Replaces single quotes and duoble quotes
+  call dein#add('tpope/vim-surround')
+  " A fancy status line
+  call dein#add('itchyny/lightline.vim')
+  
+  " Markdown Previewer
+  call dein#add('tpope/vim-markdown')
+  call dein#add('tyru/open-browser.vim')
+  call dein#add('thinca/vim-quickrun')
+  
+  call dein#add('w0rp/ale')
+  
+  " You can specify revision/branch/tag.
+  call dein#add('Shougo/vimshell', { 'rev' : '3787e5' })
+  
+  " The Silver Shearcher
+  call dein#add('rking/ag.vim')
+  
+  " HTML Tag Expander
+  call dein#add('mattn/emmet-vim')
+  
+  " Syntax highlight for js
+  call dein#add('pangloss/vim-javascript')
+  call dein#add('mxw/vim-jsx')
+  call dein#add('rust-lang/rust.vim')
+  
+  call dein#add('Quramy/tsuquyomi')
+  call dein#add('leafgarland/typescript-vim')
 
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-" Add or remove your Bundles here:
-" Helping opening files
-NeoBundle 'Shougo/unite.vim'
-" Displays recently opned files with unite.vim
-NeoBundle 'Shougo/neomru.vim'
-" Displays directories ans files by tree form 
-NeoBundle 'scrooloose/nerdtree'
-" Supports additional command for Rails
-NeoBundle 'tpope/vim-rails'
-" Completes end clause for Ruby codes
-NeoBundle 'tpope/vim-endwise'
-" Replaces single quotes and duoble quotes
-NeoBundle 'tpope/vim-surround'
-" A fancy status line
-NeoBundle 'itchyny/lightline.vim'
-
-" Markdown Previewer
-NeoBundle 'tpope/vim-markdown'
-NeoBundle 'tyru/open-browser.vim'
-NeoBundle 'thinca/vim-quickrun'
-
-NeoBundle 'w0rp/ale'
-" NeoBundle 'Shougo/neosnippet.vim'
-" NeoBundle 'Shougo/neosnippet-snippets'
-" NeoBundle 'tpope/vim-fugitive'
-" NeoBundle 'ctrlpvim/ctrlp.vim'
-" NeoBundle 'flazz/vim-colorschemes'
-
-" You can specify revision/branch/tag.
-NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
-
-" The Silver Shearcher
-NeoBundle 'rking/ag.vim'
-
-" HTML Tag Expander
-NeoBundle 'mattn/emmet-vim'
-
-" Syntax highlight for js
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'mxw/vim-jsx'
-NeoBundle 'rust-lang/rust.vim'
-
-NeoBundle 'Quramy/tsuquyomi'
-NeoBundle 'leafgarland/typescript-vim'
-
-" Required:
-call neobundle#end()
+  call dein#end()
+  call dein#save_state()
+endif
 
 " Required:
 filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
-"End NeoBundle Scripts-------------------------
-
+syntax enable
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
