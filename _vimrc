@@ -133,6 +133,12 @@ NeoBundle 'kazuph/previm', {'rev': 'feature/add-plantuml-plugin'}
 NeoBundle 'aklt/plantuml-syntax'
 let g:plantuml_executable_script = "~/dotfiles/plantuml"
 
+" Additional color scheme
+NeoBundle 'jacoborus/tender.vim'
+
+" Indent highlighting
+NeoBundle 'nathanaelkane/vim-indent-guides'
+
 " Required:
 call neobundle#end()
 
@@ -162,6 +168,7 @@ map Q gq
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
+inoremap <silent> jj <ESC>
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
@@ -171,10 +178,10 @@ endif
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
-  syntax on
+  syntax enable
   set nohlsearch
   set background=dark
-  colorscheme desert
+  colorscheme tender
 endif
 
 " Only do this part when compiled with support for autocommands.
@@ -286,5 +293,12 @@ nnoremap <leader>ap :ALEPreviousWrap<cr>
 
 " disable safe write to enable HMR on percel 
 set backupcopy=yes
+
+" Indent highlighting settings
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_guide_size = 1
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=black ctermbg=black
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=black ctermbg=black
 
 au FileType plantuml command! OpenUml :!chromium-browser %
