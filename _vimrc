@@ -21,6 +21,7 @@ set nocompatible
 
 " Use clipboard
 set clipboard=unnamed,autoselect
+
 if &compatible
   set nocompatible
 endif
@@ -64,6 +65,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('mattn/emmet-vim')
   
   " Syntax highlight for js
+  call dein#add('jacoborus/tender.vim')
   call dein#add('pangloss/vim-javascript')
   call dein#add('mxw/vim-jsx')
   call dein#add('rust-lang/rust.vim')
@@ -76,74 +78,8 @@ if dein#load_state('~/.cache/dein')
 endif
 
 " Required:
-call neobundle#begin(expand('~/.vim/bundle'))
-
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-" Add or remove your Bundles here:
-" Helping opening files
-NeoBundle 'Shougo/unite.vim'
-" Displays recently opned files with unite.vim
-NeoBundle 'Shougo/neomru.vim'
-" Displays directories ans files by tree form 
-NeoBundle 'scrooloose/nerdtree'
-" Supports additional command for Rails
-NeoBundle 'tpope/vim-rails'
-" Completes end clause for Ruby codes
-NeoBundle 'tpope/vim-endwise'
-" Replaces single quotes and duoble quotes
-NeoBundle 'tpope/vim-surround'
-" A fancy status line
-NeoBundle 'itchyny/lightline.vim'
-
-" Markdown Previewer
-NeoBundle 'tpope/vim-markdown'
-NeoBundle 'tyru/open-browser.vim'
-NeoBundle 'thinca/vim-quickrun'
-
-NeoBundle 'w0rp/ale'
-" NeoBundle 'Shougo/neosnippet.vim'
-" NeoBundle 'Shougo/neosnippet-snippets'
-" NeoBundle 'tpope/vim-fugitive'
-" NeoBundle 'ctrlpvim/ctrlp.vim'
-" NeoBundle 'flazz/vim-colorschemes'
-
-" You can specify revision/branch/tag.
-NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
-
-" The Silver Shearcher
-NeoBundle 'rking/ag.vim'
-
-" HTML Tag Expander
-NeoBundle 'mattn/emmet-vim'
-
-" Syntax highlight for js
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'mxw/vim-jsx'
-NeoBundle 'rust-lang/rust.vim'
-
-" TypeScript syntax highlighting
-NeoBundle 'Quramy/tsuquyomi'
-NeoBundle 'leafgarland/typescript-vim'
-
-" PluntUML
-NeoBundle 'kazuph/previm', {'rev': 'feature/add-plantuml-plugin'}
-NeoBundle 'aklt/plantuml-syntax'
-let g:plantuml_executable_script = "~/dotfiles/plantuml"
-
-" Additional color scheme
-NeoBundle 'jacoborus/tender.vim'
-
-" Indent highlighting
-NeoBundle 'nathanaelkane/vim-indent-guides'
-
-" Required:
-call neobundle#end()
-
-" Required:
 filetype plugin indent on
+
 syntax enable
 
 " allow backspacing over everything in insert mode
